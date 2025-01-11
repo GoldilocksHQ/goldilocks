@@ -1,8 +1,10 @@
 .env
 venv/
+tests/
 __pycache__/
 .DS_Store
 .vscode/
 *.sqlite3
 coverage/
 token.json
+tests/test_google_sheets.py

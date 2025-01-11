@@ -12,5 +12,8 @@ class Settings:
   # Optional: Database or secrets manager settings
   DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./test.db")
 
+  # OPENAI API
+  OPENAI_API_KEY = os.getenv('OPENAI_API_KEY','')
+
 
 settings = Settings()

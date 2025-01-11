@@ -10,6 +10,9 @@ class GoogleSheetsConnector:
   def __init__(self):
     self.token_manager = TokenManager()
 
+  def is_authorized(self, user_id: str) -> bool:
+    return self.token_manager.get_credentials(user_id) is not None
+
   def get_authorization_url(self, user_id: str)-> str:
     # Scopes to read/write Google Sheets
     flow  = Flow.from_client_config(
@@ -26,7 +29,7 @@ class GoogleSheetsConnector:
     )
     flow.redirect_uri = settings.GOOGLE_REDIRECT_URI
 
-    state = json.dumps({"user_id": user_id})
+    state = json.dumps({"user_id": user_id}).replace(' ', '%20')
     authorization_url, state = flow.authorization_url(
       access_type="offline",
       prompt="consent",
